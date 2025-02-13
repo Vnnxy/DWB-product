@@ -19,8 +19,8 @@ public class CtrlProduct {
      * 
      * @return an array of Category objects.
      */
-    @RequestMapping("/category")
-    @GetMapping
+
+    @GetMapping("/category")
     public Category[] getCategory() {
         // We are adding some categories for testing purposes.
         Category[] categories = {
