@@ -9,8 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.product.api.entity.Category;
-import com.product.api.exception.ApiException;
 import com.product.api.repository.RepoCategory;
+import com.product.exception.ApiException;
 
 @Service
 public class SvcCategoryImp implements SvcCategory {

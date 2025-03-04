@@ -1,4 +1,4 @@
-package com.product.api.exception;
+package com.product.exception;
 
 import org.springframework.http.HttpStatus;
 
@@ -12,7 +12,7 @@ public class ApiException extends RuntimeException {
         this.status = status;
     }
 
-    // No se si esta van
+    
     public static long getSerialversionuid() {
         return serialVersionUID;
     }

@@ -1,4 +1,4 @@
-package com.product.api.exception;
+package com.product.exception;
 
 import java.time.LocalDateTime;
 
@@ -7,9 +7,10 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @ControllerAdvice
-public class RestExceptionHandler {
+public class RestExceptionHandler extends ResponseEntityExceptionHandler{
 
     @ExceptionHandler(ApiException.class)
     protected ResponseEntity<ExceptionResponse> handleApiException(ApiException exception, WebRequest request) {
