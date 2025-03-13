@@ -45,7 +45,7 @@ public class CtrlCategory {
     }
     
     @PostMapping()
-    public ResponseEntity<ApiResponse> createCategory(@RequestBody DtoCategoryIn in, BindingResult bindingResult) {
+    public ResponseEntity<ApiResponse> createCategory(@Valid @RequestBody DtoCategoryIn in, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             throw new ApiException(HttpStatus.BAD_REQUEST, bindingResult.getFieldError().getDefaultMessage());
         return svc.createCategory(in);
