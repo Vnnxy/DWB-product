@@ -1,5 +1,8 @@
 package com.product.api.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -15,15 +18,23 @@ import jakarta.persistence.Table;
 public class Category {
     /** El identificador de la categoría. */
     @Id
+    @JsonProperty("category_id")
+	@Column(name = "category_id")
     private Integer category_id;
 
     /** El nombre de la categoría. */
+    @JsonProperty("category")
+	@Column(name = "category")
     private String category;
 
     /** El tag de la categoría. */
+    @JsonProperty("tag")
+	@Column(name = "tag")
     private String tag;
 
     /** El status de la categoría. */
+    @JsonProperty("status")
+	@Column(name = "status")
     private Integer status;
 
 
