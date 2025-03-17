@@ -9,9 +9,19 @@ import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+/**
+ * Handler for the Exceptions thrown by the Api.
+ */
 @ControllerAdvice
-public class RestExceptionHandler extends ResponseEntityExceptionHandler{
+public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
+    /**
+     * Main method that handles the exception.
+     * 
+     * @param exception The ApiException that was thrown
+     * @param request   The request for the URI
+     * @return ResponseEntity with a response.
+     */
     @ExceptionHandler(ApiException.class)
     protected ResponseEntity<ExceptionResponse> handleApiException(ApiException exception, WebRequest request) {
         ExceptionResponse response = new ExceptionResponse();
