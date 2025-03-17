@@ -24,9 +24,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
 
-
-
-
+/**
+ * Controller class for the <Category> object.
+ * 
+ */
 @RestController
 @RequestMapping("/category")
 public class CtrlCategory {
@@ -34,39 +35,77 @@ public class CtrlCategory {
     @Autowired
     SvcCategory svc;
 
+    /**
+     * Getter for all the categories.
+     * 
+     * @return A ResponseEntity with a list containing all the categories.
+     */
     @GetMapping()
     public ResponseEntity<List<Category>> getCategories() {
         return svc.getCategories();
     }
 
+    /**
+     * Gets all of the active categories.
+     * 
+     * @return ResponseEntity with a list containing all active categories.
+     */
     @GetMapping("/active")
     public ResponseEntity<List<Category>> getActiveCategories() {
         return svc.getActiveCategories();
     }
-    
+
+    /**
+     * Creates a new category and calls the corresponding service.
+     * 
+     * @param in            The Dto for creating a category.
+     * @param bindingResult Required for error handling
+     * @return ResponseEntity with an Api Response.
+     */
     @PostMapping()
-    public ResponseEntity<ApiResponse> createCategory(@Valid @RequestBody DtoCategoryIn in, BindingResult bindingResult) {
+    public ResponseEntity<ApiResponse> createCategory(@Valid @RequestBody DtoCategoryIn in,
+            BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             throw new ApiException(HttpStatus.BAD_REQUEST, bindingResult.getFieldError().getDefaultMessage());
         return svc.createCategory(in);
     }
 
+    /**
+     * Updates an existing category by calling the corresponding service.
+     * 
+     * @param id            Id of the category we want to update
+     * @param in            Dto with the required information
+     * @param bindingResult Required for error handling
+     * @return ResponseEntity with an Api Response.
+     */
     @PutMapping("/{id}")
-    public ResponseEntity<ApiResponse> updateCategory(@PathVariable Integer id, @Valid @RequestBody DtoCategoryIn in, 
-        BindingResult bindingResult) {
+    public ResponseEntity<ApiResponse> updateCategory(@PathVariable Integer id, @Valid @RequestBody DtoCategoryIn in,
+            BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             throw new ApiException(HttpStatus.BAD_REQUEST, bindingResult.getFieldError().getDefaultMessage());
-        return svc.updateCategory(in,id);
+        return svc.updateCategory(in, id);
     }
-    
+
+    /**
+     * Enables a category, making it available for use.
+     * 
+     * @param id Id of the category we want to enable.
+     * @return ResponseEntity with an Api Response.
+     */
     @PatchMapping("/{id}/enable")
-    public ResponseEntity<ApiResponse> enableCategory(@PathVariable Integer id){
+    public ResponseEntity<ApiResponse> enableCategory(@PathVariable Integer id) {
         return svc.enableCategory(id);
     }
 
+    /**
+     * Disables a category, making it unavailable for use.
+     * 
+     * @param id Id of the category we want to disable.
+     * @return ResponseEntity with an Api Response.
+     */
     @PatchMapping("/{id}/disable")
-    public ResponseEntity<ApiResponse> disableCategory(@PathVariable Integer id){
+    public ResponseEntity<ApiResponse> disableCategory(@PathVariable Integer id) {
         return svc.disableCategory(id);
     }
-    
+
 }

@@ -8,48 +8,48 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 /**
- * @author Ramón Arcos Morales,Miguel Akira Lopez Asano.
+ * @author Ramón Arcos Morales, Miguel Akira Lopez Asano.
  *         <p>
- *         Clase para representar Categorias.
+ *         Class to represent Categories.
  *         </p>
  */
 @Entity
 @Table(name = "category")
 public class Category {
-    /** El identificador de la categoría. */
+    /** The category identifier. */
     @Id
     @JsonProperty("category_id")
-	@Column(name = "category_id")
+    @Column(name = "category_id")
     private Integer category_id;
 
-    /** El nombre de la categoría. */
+    /** The category name. */
     @JsonProperty("category")
-	@Column(name = "category")
+    @Column(name = "category")
     private String category;
 
-    /** El tag de la categoría. */
+    /** The category tag. */
     @JsonProperty("tag")
-	@Column(name = "tag")
+    @Column(name = "tag")
     private String tag;
 
-    /** El status de la categoría. */
+    /** The category status. */
     @JsonProperty("status")
-	@Column(name = "status")
+    @Column(name = "status")
     private Integer status;
 
-
     /**
-     * Constructor vacío
+     * Empty constructor
      */
-    public Category(){}
+    public Category() {
+    }
 
     /**
-     * Construye una categoría a partir de los atributos.
+     * Constructs a category from the attributes.
      * 
-     * @param category_id el id a usar.
-     * @param category    el nombre a usar.
-     * @param tag         el tag a usar.
-     * @param status      el status a usar.
+     * @param category_id the id to use.
+     * @param category    the name to use.
+     * @param tag         the tag to use.
+     * @param status      the status to use.
      */
     public Category(Integer category_id, String category, String tag, Integer status) {
         this.category_id = category_id;
@@ -59,81 +59,81 @@ public class Category {
     }
 
     /**
-     * Regresa el id de la categoría.
+     * Returns the category id.
      * 
-     * @return el id de la categoría.
+     * @return the category id.
      */
     public Integer getCategory_id() {
         return category_id;
     }
 
     /**
-     * Define un nuevo id.
+     * Sets a new id.
      * 
-     * @param category_id el nuevo id de la categoría.
+     * @param category_id the new category id.
      */
     public void setCategory_id(Integer category_id) {
         this.category_id = category_id;
     }
 
     /**
-     * Regresa el nombre de la categoría.
+     * Returns the category name.
      * 
-     * @return el nombre de la categoría.
+     * @return the category name.
      */
     public String getCategory() {
         return category;
     }
 
     /**
-     * Define un nuevo nombre a una categoría.
+     * Sets a new name for a category.
      * 
-     * @param category el nuevo nombre.
+     * @param category the new name.
      */
     public void setCategory(String category) {
         this.category = category;
     }
 
     /**
-     * Regresa el tag de la categoría.
+     * Returns the category tag.
      * 
-     * @return el tag de la categoría.
+     * @return the category tag.
      */
     public String getTag() {
         return tag;
     }
 
     /**
-     * Define un nuevo tag.
+     * Sets a new tag.
      * 
-     * @param tag el nuevo tag.
+     * @param tag the new tag.
      */
     public void setTag(String tag) {
         this.tag = tag;
     }
 
     /**
-     * Regresa el status de la categoría
+     * Returns the category status.
      * 
-     * @return el status de la categoría.
+     * @return the category status.
      */
     public Integer getStatus() {
         return status;
     }
 
     /**
-     * Define un nuevo status.
+     * Sets a new status.
      * 
-     * @param status el nuevo status.
+     * @param status the new status.
      */
     public void setStatus(Integer status) {
         this.status = status;
     }
 
     /**
-     * Regresa la representación en cadena de una categoría.
+     * Returns the string representation of a category.
      * 
-     * @return la cadena que representa a una categoría.
+     * @return the string that represents a category.
      */
     @Override
     public String toString() {
