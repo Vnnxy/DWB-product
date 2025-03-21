@@ -1,4 +1,4 @@
-package com.product.common;
+package com.product.common.dto;
 
 /**
  * Api response class, this handles the responses when handling with the api

@@ -3,10 +3,10 @@ package com.product.api.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.product.api.dto.DtoCategoryIn;
+import com.product.api.dto.in.DtoCategoryIn;
 import com.product.api.entity.Category;
 import com.product.api.service.SvcCategory;
-import com.product.common.ApiResponse;
+import com.product.common.dto.ApiResponse;
 import com.product.exception.ApiException;
 
 import jakarta.validation.Valid;
