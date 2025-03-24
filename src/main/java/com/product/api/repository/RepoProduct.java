@@ -7,11 +7,14 @@ import org.springframework.stereotype.Repository;
 import com.product.api.dto.out.DtoProductOut;
 import com.product.api.entity.Product;
 
+/**
+ * Interface for the Product repository.
+ */
 @Repository
-public interface RepoProduct extends JpaRepository<Product,Integer>{
+public interface RepoProduct extends JpaRepository<Product, Integer> {
     @Query(value = "SELECT p.*, c.category "
-                    + "FROM product p "
-                    + "INNER JOIN category c ON p.category_id = c.category_id "
-                    + "Where p.product_id = :product_id;", nativeQuery = true)
+            + "FROM product p "
+            + "INNER JOIN category c ON p.category_id = c.category_id "
+            + "Where p.product_id = :product_id;", nativeQuery = true)
     DtoProductOut getProduct(Integer product_id);
 }

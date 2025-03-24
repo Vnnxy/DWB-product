@@ -21,20 +21,29 @@ import com.product.common.dto.ApiResponse;
 import com.product.exception.ApiException;
 import com.product.exception.DBAccessException;
 
+/**
+ * Implementation for the Product Image service.
+ */
 @Service
-public class SvcProductImageImp implements SvcProductImage{
+public class SvcProductImageImp implements SvcProductImage {
 
     @Autowired
     RepoProductImage repo;
 
     @Value("${app.upload.dir}")
-	private String uploadDir;
+    private String uploadDir;
 
+    /**
+     * Uploads a product image
+     * 
+     * @param in a DtoProductImageIn in
+     * @return ResponseEntity with an ApiResponse
+     */
     @Override
-    public ResponseEntity<ApiResponse> uploadProductImage(DtoProductImageIn in){
-        try{
+    public ResponseEntity<ApiResponse> uploadProductImage(DtoProductImageIn in) {
+        try {
             // Eliminar el prefijo "data:image/png;base64," si existe
-			if (in.getImage().startsWith("data:image")) {
+            if (in.getImage().startsWith("data:image")) {
                 int commaIndex = in.getImage().indexOf(",");
                 if (commaIndex != -1) {
                     in.setImage(in.getImage().substring(commaIndex + 1));
@@ -54,36 +63,47 @@ public class SvcProductImageImp implements SvcProductImage{
             ProductImage productImage = new ProductImage();
             productImage.setProduct_id(in.getProduct_id());
             productImage.setImage("img/product/" + fileName);
-            productImage.setStatus(1); 
+            productImage.setStatus(1);
             // Guardar la ruta de la imagen
             repo.save(productImage);
-            return new ResponseEntity<>(new ApiResponse("La imagen ha sido registrada"),HttpStatus.OK);
+            return new ResponseEntity<>(new ApiResponse("La imagen ha sido registrada"), HttpStatus.OK);
 
-        } catch (DataAccessException e){
+        } catch (DataAccessException e) {
             throw new DBAccessException(e);
-        } catch (IOException e){
+        } catch (IOException e) {
             throw new ApiException(HttpStatus.INTERNAL_SERVER_ERROR, "Error al guardar el archivo");
         }
     }
 
+    /**
+     * Deletes a product image
+     * 
+     * @param product_image_id Id of the product image
+     * @return ResponseEntity with an ApiResponse
+     */
     @Override
-    public ResponseEntity<ApiResponse> deleteProductImage(Integer product_image_id){
-        try{
+    public ResponseEntity<ApiResponse> deleteProductImage(Integer product_image_id) {
+        try {
             validateProductImageId(product_image_id);
             repo.disableProductImage(product_image_id);
-            return new ResponseEntity<>(new ApiResponse("La imagen ha sido eliminada"),HttpStatus.OK);
-        } catch(DataAccessException e){
+            return new ResponseEntity<>(new ApiResponse("La imagen ha sido eliminada"), HttpStatus.OK);
+        } catch (DataAccessException e) {
             throw new DBAccessException(e);
         }
     }
 
+    /**
+     * Private method that validates a product image id
+     * 
+     * @param id The product image id
+     */
     private void validateProductImageId(Integer id) {
-		try {
-			if(repo.findById(id).isEmpty()) {
-				throw new ApiException(HttpStatus.NOT_FOUND, "El id de la imagen no existe");
-			}
-		}catch (DataAccessException e) {
-			throw new DBAccessException(e);
-		}
-	}
+        try {
+            if (repo.findById(id).isEmpty()) {
+                throw new ApiException(HttpStatus.NOT_FOUND, "El id de la imagen no existe");
+            }
+        } catch (DataAccessException e) {
+            throw new DBAccessException(e);
+        }
+    }
 }

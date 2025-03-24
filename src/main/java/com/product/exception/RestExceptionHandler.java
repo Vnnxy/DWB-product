@@ -35,19 +35,26 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(response, response.getError());
     }
 
+    /**
+     * Handler for the DBAccessException
+     * 
+     * @param exception The exception
+     * @param request   The Web request
+     * @return A ResponseEntity object.
+     */
     @ExceptionHandler(DBAccessException.class)
-	protected ResponseEntity<ExceptionResponse> DBAccessException(DBAccessException exception, WebRequest request){
+    protected ResponseEntity<ExceptionResponse> DBAccessException(DBAccessException exception, WebRequest request) {
 
-		System.out.println(exception.getException().getLocalizedMessage());
-		
-		ExceptionResponse response = new ExceptionResponse();
-		response.setTimestamp(LocalDateTime.now());
-		response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
-		response.setError(HttpStatus.INTERNAL_SERVER_ERROR);
-		response.setMessage("Error al consultar la base de datos");
-		response.setPath(((ServletWebRequest)request).getRequest().getRequestURI().toString());
-		
-		return new ResponseEntity<>(response, response.getError());
-	}
+        System.out.println(exception.getException().getLocalizedMessage());
+
+        ExceptionResponse response = new ExceptionResponse();
+        response.setTimestamp(LocalDateTime.now());
+        response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
+        response.setError(HttpStatus.INTERNAL_SERVER_ERROR);
+        response.setMessage("Error al consultar la base de datos");
+        response.setPath(((ServletWebRequest) request).getRequest().getRequestURI().toString());
+
+        return new ResponseEntity<>(response, response.getError());
+    }
 
 }
