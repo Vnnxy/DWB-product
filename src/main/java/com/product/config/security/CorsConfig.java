@@ -1,4 +1,4 @@
-package com.product.api.config.security;
+package com.product.config.security;
 
 import java.util.Arrays;
 
@@ -8,10 +8,18 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 
 import jakarta.servlet.http.HttpServletRequest;
-
+/**
+ * @author Carlos López Rodríguez.
+ *         <p>
+ *         Class that defines the CORS configuration
+ *         </p>
+ */
 @Component
 public class CorsConfig implements CorsConfigurationSource {
 
+    /**
+     * Methos that defines the allowes methods
+     */
     @Override
     public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
         CorsConfiguration corsConfiguration = new CorsConfiguration();

@@ -1,4 +1,4 @@
-package com.product.api.config.security;
+package com.product.config.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -12,17 +12,28 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.product.api.config.jwt.JwtAuthFilter;
+import com.product.config.jwt.JwtAuthFilter;
 
 /**
- * Clase que define los permisos para cada endpoint
+ * @author Carlos López Rodríguez.
+ *         <p>
+ *         Class that defines the required authorities in every endpoint
+ *         </p>
  */
 @Configuration
 public class SecurityConfig {
-
+    
+    /** The filter */    
     @Autowired
     private JwtAuthFilter jwtFilter;
 
+    /**
+     * Defines a security fileter chain as a java bean
+     * @param http The security http 
+     * @param corsConfig The CORS Configuration object used
+     * @return SecurityFilterChain as a java bean
+     * @throws Exception
+     */
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http, CorsConfig corsConfig) throws Exception {
 

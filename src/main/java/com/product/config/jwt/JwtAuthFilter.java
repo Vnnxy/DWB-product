@@ -1,4 +1,4 @@
-package com.product.api.config.jwt;
+package com.product.config.jwt;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -16,16 +16,27 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 /**
- * Clase que funciona como interceptora de token
+ * @author Carlos López Rodríguez.
+ *         <p>
+ *         Class that intercepts tokens
+ *         </p>
  */
 @Component
 public class JwtAuthFilter extends OncePerRequestFilter {
+    /** The Util object */
     private final JwtUtil jwtUtil;
 
+    /**
+     * Constructor that asigns the given utility
+     * @param jwtUtil the utility used
+     */
     public JwtAuthFilter(JwtUtil jwtUtil) {
         this.jwtUtil = jwtUtil;
     }
 
+    /**
+     * Method that intercepts and verifies the given token
+     */
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {
