@@ -9,6 +9,7 @@ import com.product.api.service.SvcCategory;
 import com.product.common.dto.ApiResponse;
 import com.product.exception.ApiException;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
 import java.util.List;
@@ -30,6 +31,7 @@ import org.springframework.web.bind.annotation.PutMapping;
  */
 @RestController
 @RequestMapping("/category")
+@Tag(name = "Category", description = "Catalog of categories")
 public class CtrlCategory {
 
     @Autowired

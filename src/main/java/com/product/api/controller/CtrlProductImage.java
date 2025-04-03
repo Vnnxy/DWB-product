@@ -12,6 +12,7 @@ import com.product.api.service.SvcProductImage;
 import com.product.common.dto.ApiResponse;
 import com.product.exception.ApiException;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestBody;
  */
 @RestController
 @RequestMapping("/product-image")
+@Tag(name = "Product image",description = "Load products' images")
 public class CtrlProductImage {
 
     @Autowired
