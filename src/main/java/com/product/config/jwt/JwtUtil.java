@@ -23,6 +23,7 @@ public class JwtUtil {
 
     /**
      * Method that extracts the claims in a token
+     * 
      * @param token The token
      * @return Claims
      */
@@ -35,6 +36,7 @@ public class JwtUtil {
 
     /**
      * Extracts the username in a token
+     * 
      * @param token The token
      * @return String with the username
      */
@@ -44,6 +46,7 @@ public class JwtUtil {
 
     /**
      * Extracts the authorities in a token
+     * 
      * @param token the token
      * @return The list with the authorities
      */
@@ -53,7 +56,8 @@ public class JwtUtil {
 
     /**
      * MEthod that verifies wheter a token is valid
-     * @param token The token
+     * 
+     * @param token    The token
      * @param username The username
      * @return true if is valid, false in other case.
      */
@@ -63,16 +67,18 @@ public class JwtUtil {
 
     /**
      * MEthod that berifies whether a token is expires
+     * 
      * @param token The token
      * @return true if the token is expires, false in other case
      */
-    private boolean isTokenExpired(String token) {
+    public boolean isTokenExpired(String token) {
         return extractClaim(token, Claims::getExpiration).before(new Date());
     }
 
     /**
      * Method that extracts claims in a token
-     * @param token The token
+     * 
+     * @param token          The token
      * @param claimsResolver The claim resolver
      * @return THe claim
      */
